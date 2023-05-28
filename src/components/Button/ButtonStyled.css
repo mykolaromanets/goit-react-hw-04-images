@@ -1,0 +1,28 @@
+.Btn__loadMore {
+  align-items: center;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+
+  height: 50px;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-left: 50%;
+  margin-top: 30px;
+  padding: 0;
+  transform: translateX(-50%);
+  width: 150px;
+}
+.Btn__loadMore:hover,
+.Btn__loadMore:focus {
+  background-color: #000;
+  color: #fff;
+}
+/* .Icon__styled {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  fill: #fff;
+} */

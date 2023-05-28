@@ -1,0 +1,10 @@
+.Item__styled {
+  display: flex;
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.Item__image {
+  max-width: 480px;
+  height: auto;
+}

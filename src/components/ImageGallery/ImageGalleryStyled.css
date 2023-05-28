@@ -1,0 +1,15 @@
+.List__styled {
+  padding: 50px 0 50px 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  background: linear-gradient(
+    300deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(208, 5, 5, 0.6279761904761905) 11%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
