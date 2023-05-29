@@ -23,34 +23,36 @@ const App = () => {
     if (query === '') {
       return;
     }
-    setIsLoading(true);
-    fetchImages(query, page)
-      .then(({ hits, totalHits }) => {
-        const imagesArray = hits.map(hit => ({
-          id: hit.id,
-          description: hit.tags,
-          smallImage: hit.webformatURL,
-          largeImage: hit.largeImageURL,
-        }));
 
-        let newImages;
-        let newImagesOnPage;
+    const fetchImagesData = () => {
+      setIsLoading(true);
 
-        if (page === 1) {
-          newImages = imagesArray;
-          newImagesOnPage = imagesArray.length;
-        } else {
-          newImages = [...images, ...imagesArray];
-          newImagesOnPage = imagesOnPage + imagesArray.length;
-        }
+      fetchImages(query, page)
+        .then(({ hits, totalHits }) => {
+          const imagesArray = hits.map(hit => ({
+            id: hit.id,
+            description: hit.tags,
+            smallImage: hit.webformatURL,
+            largeImage: hit.largeImageURL,
+          }));
 
-        setImages(newImages);
-        setImagesOnPage(newImagesOnPage);
-        setTotalImages(totalHits);
-      })
-      .catch(error => setError(error))
-      .finally(() => setIsLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+          if (page === 1) {
+            setImages(imagesArray);
+            setImagesOnPage(imagesArray.length);
+          } else {
+            setImages(prevImages => [...prevImages, ...imagesArray]);
+            setImagesOnPage(
+              prevImagesOnPage => prevImagesOnPage + imagesArray.length
+            );
+          }
+
+          setTotalImages(totalHits);
+        })
+        .catch(error => setError(error))
+        .finally(() => setIsLoading(false));
+    };
+
+    fetchImagesData();
   }, [query, page]);
 
   const getSearchRequest = query => {
@@ -63,17 +65,17 @@ const App = () => {
   };
 
   const onNextFetch = () => {
-    setPage(page + 1);
+    setPage(prevPage => prevPage + 1);
   };
 
   const toggleModal = () => {
-    setShowModal(showModal => !showModal);
+    setShowModal(prevShowModal => !prevShowModal);
   };
 
   const openModal = (imageUrl, imageDescription) => {
     setCurrentImageUrl(imageUrl);
     setCurrentImageDescription(imageDescription);
-    setShowModal(!showModal);
+    setShowModal(true);
   };
 
   return (
