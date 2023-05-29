@@ -50,6 +50,7 @@ const App = () => {
       })
       .catch(error => setError(error))
       .finally(() => setIsLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, page]);
 
   const getSearchRequest = query => {
